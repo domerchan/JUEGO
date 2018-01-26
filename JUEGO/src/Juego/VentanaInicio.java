@@ -21,7 +21,8 @@ public class VentanaInicio {
 		 JButton iniciar;
 		 JLabel fondoPresentacion;
 		 ImageIcon imagenpres;
-		
+		static String pathP;
+		static String pathM;
 		// pat de las imagenes 
 		public VentanaInicio() {
 			ventana = new JFrame("Pacman");
@@ -46,7 +47,7 @@ public class VentanaInicio {
 			// pocision luego tamanio(derecha , iz , ancho ,largo)
 			iniciar.setBounds(ventana.getWidth()-500, 380, 150, 30);
 			iniciar.setVisible(true);
-			iniciar.setBackground(Color.white);
+			iniciar.setBackground(Color.GRAY);
 			presentacion.add(iniciar, 0);
 
 			fondoPresentacion = new JLabel();
@@ -63,8 +64,8 @@ public class VentanaInicio {
 
 				public void mousePressed(MouseEvent e) {
 					System.out.println("Iniciar");
-					
 					VentanaMenu c=new VentanaMenu();
+					pathP="proyectoPacman/";
 					
 				}
 			});

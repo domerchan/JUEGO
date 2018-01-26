@@ -127,9 +127,14 @@ public class VentanaPrincipal extends JFrame implements SerialPortEventListener 
 						System.out.println("derecha" );
 					}
 					if(y==5){
-						//Juego.palanca.start();
+					    //Juego.palanca.start();
 						System.out.println("boton");
 					}
+					if(y==6){
+					    //Juego.palanca.start();
+						System.out.println("cuadrado");
+					}
+					
 					repaint();
 				}
             }

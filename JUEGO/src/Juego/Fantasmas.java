@@ -46,12 +46,17 @@ this.movimiento();
 						Juego.pintarMatriz();
 					}else
 					//choca con la pared
-					if(fanx > 0 && Juego.mat[fanx-1][fany] == 2 ||Juego.mat[fanx-1][fany]==5 || Juego.mat[fanx-1][fany]==6){
+					if(fanx > 0 && Juego.mat[fanx-1][fany] == 2 ||Juego.mat[fanx-1][fany]==5 || Juego.mat[fanx-1][fany]==6 || Juego.mat[fanx-1][fany]==15 
+							|| Juego.mat[fanx-1][fany]==191 || Juego.mat[fanx-1][fany]==18 || Juego.mat[fanx-1][fany]==20 || Juego.mat[fanx-1][fany]==14
+							|| Juego.mat[fanx-1][fany]==19 || Juego.mat[fanx-1][fany]==16|| Juego.mat[fanx-1][fany]==13 || Juego.mat[fanx-1][fany]==111
+							|| Juego.mat[fanx-1][fany]==22){
 						//cambiar direccion si encuentra un muero
 						direccion = aleatorio.nextInt(4);
+						
 					}else
 					//choca con otro fantasma
 					if( Juego.mat[fanx-1][fany] == 7){
+						
 						direccion = aleatorio.nextInt(4);
 						
 					}
@@ -68,7 +73,10 @@ this.movimiento();
 						Juego.pintarMatriz();
 					}else
 					
-					if(fanx <14 && Juego.mat[fanx+1][fany]==2 || Juego.mat[fanx+1][fany]==5 || Juego.mat[fanx+1][fany]==6 ){
+					if(fanx <14 && Juego.mat[fanx+1][fany]==2 || Juego.mat[fanx+1][fany]==5 || Juego.mat[fanx+1][fany]==6 || Juego.mat[fanx+1][fany]==15 
+							|| Juego.mat[fanx+1][fany]==191 || Juego.mat[fanx+1][fany]==18 || Juego.mat[fanx+1][fany]==20 || Juego.mat[fanx+1][fany]==14
+							|| Juego.mat[fanx+1][fany]==19 || Juego.mat[fanx+1][fany]==16 || Juego.mat[fanx+1][fany]==13 || Juego.mat[fanx+1][fany]==111
+							|| Juego.mat[fanx+1][fany]==22){
 						//cambiar direccion si encuentra un muero
 						direccion = aleatorio.nextInt(4);
 					}else
@@ -91,7 +99,10 @@ this.movimiento();
 						Juego.pintarMatriz();
 					}else
 					
-					if(fany > 0 && Juego.mat[fanx][fany-1] == 2 || Juego.mat[fanx][fany-1] == 5 || Juego.mat[fanx][fany-1] == 6){
+					if(fany > 0 && Juego.mat[fanx][fany-1] == 2 || Juego.mat[fanx][fany-1] == 5 || Juego.mat[fanx][fany-1] == 6 || Juego.mat[fanx][fany-1] == 15
+							|| Juego.mat[fanx][fany-1] == 191 || Juego.mat[fanx][fany-1] == 18 || Juego.mat[fanx][fany-1] == 20 || Juego.mat[fanx][fany-1] == 14
+							|| Juego.mat[fanx][fany-1] == 19 || Juego.mat[fanx][fany-1] == 16 || Juego.mat[fanx][fany-1] == 13 || Juego.mat[fanx][fany-1] == 111
+							|| Juego.mat[fanx][fany-1] == 22){
 						//cambiar direccion si encuentra un muero
 						direccion = aleatorio.nextInt(4);
 					}else
@@ -112,7 +123,10 @@ this.movimiento();
 						Juego.mat[fanx][fany]=7;
 						Juego.pintarMatriz();
 					}else
-					if(fany < 14 && Juego.mat[fanx][fany+1]==2 ||Juego.mat[fanx][fany+1]==5 || Juego.mat[fanx][fany+1]==6){
+					if(fany < 14 && Juego.mat[fanx][fany+1]==2 ||Juego.mat[fanx][fany+1]==5 || Juego.mat[fanx][fany+1]==6 || Juego.mat[fanx][fany+1]==15
+							|| Juego.mat[fanx][fany+1]==191 || Juego.mat[fanx][fany+1]==18 || Juego.mat[fanx][fany+1]==20 || Juego.mat[fanx][fany+1]==14 
+							|| Juego.mat[fanx][fany+1]==19 || Juego.mat[fanx][fany+1]==16 || Juego.mat[fanx][fany+1]==13  || Juego.mat[fanx][fany+1]==111
+							|| Juego.mat[fanx][fany+1]==22){
 						//cambiar direccion si encuentra un muero
 						direccion = aleatorio.nextInt(4);
 					}else

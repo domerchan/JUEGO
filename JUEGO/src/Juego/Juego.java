@@ -10,6 +10,9 @@ import java.util.*;
 import javax.swing.*;
 import javax.swing.Timer;
 
+import tablero.Gestion;
+import tablero.VentanaPuntajes;
+
 public class Juego {
 
 	static JFrame ventana;
@@ -30,10 +33,15 @@ public class Juego {
 	int arriba;
 	int izquierda;
 	int derecha;
+
+	// muerte
+	int contM = 1;
+	Timer timer1;
+
 	// cosas nesesarias para el juego
-	static String jugador;
+	public static String jugador;
 	JLabel nombre;
-	int puntos;
+	public static int puntos;
 	JLabel record;
 
 	// metodo mover atributos
@@ -59,13 +67,27 @@ public class Juego {
 	int numero;
 
 	public Juego() {
+
 		VentanaMenu.ventana.setVisible(false);
 		ventana = new JFrame();
-		ventana.setSize(700, 700);
+		ventana.setSize(1380, 800);
 		ventana.setLayout(null);
 		ventana.setVisible(true);
 		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		// juego
+		// timer2 = new Timer(1, new ActionListener() {
+		// public void actionPerformed(ActionEvent e) {
+		// Sonido s=new Sonido();
+		// try {
+		// s.sonido();
+		// } catch (Exception e1) {
+		// // TODO Auto-generated catch block
+		// e1.printStackTrace();
+		// }
+		// timer2.stop();
+		// }
+		// });
+		// timer2.start();
 		// cramos label para insertar las imagenes
 
 		mat = new int[15][15];
@@ -116,9 +138,9 @@ public class Juego {
 		for (int i = 0; i < mat.length; i++) {
 			for (int j = 0; j < mat.length; j++) {
 				// agregar las imagenes a la matriz
-				matriz[i][j].setIcon(new ImageIcon("proyectoPacman/" + mat[i][j] + ".png"));
+				matriz[i][j].setIcon(new ImageIcon(VentanaInicio.pathP+ mat[i][j] + ".png"));
 				// 200pixeles marjen
-				matriz[i][j].setBounds(120 + (i * 30), 120 + (j * 30), 30, 30);
+				matriz[i][j].setBounds(400 + (i * 30), 120 + (j * 30), 30, 30);
 				matriz[i][j].setVisible(true);
 				// es para superponer paneles
 				panelJuego.add(matriz[i][j], 0);
@@ -132,8 +154,8 @@ public class Juego {
 			vidas[i] = new JLabel();
 		}
 		for (int i1 = 0; i1 < vidas.length; i1++) {
-			vidas[i1].setIcon(new ImageIcon("proyectoPacman/vidas.png"));
-			vidas[i1].setBounds(120 + (i1 * 30), 600, 30, 30);
+			vidas[i1].setIcon(new ImageIcon(VentanaInicio.pathP+"vidas.png"));
+			vidas[i1].setBounds(400 + (i1 * 30), 600, 30, 30);
 			vidas[i1].setVisible(true);
 			panelJuego.add(vidas[i1], 0);
 		}
@@ -156,8 +178,8 @@ public class Juego {
 		mover();
 		// iniciamos la coneccion
 
-		fantasma1 = new Fantasmas(12, 13);
-		fantasma2 = new Fantasmas(13, 13);
+		fantasma1 = new Fantasmas(6, 7);
+		//fantasma2 = new Fantasmas(6, 6);
 		// fantasma3 = new Fantasmas(13, 12);
 
 		ventana.add(panelJuego);
@@ -170,15 +192,22 @@ public class Juego {
 		if (option == 1) {
 			int aux[][] = {
 
-					{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2 }, { 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 1, 2, 2, 1, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 }, { 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 191, 15, 15, 15, 15, 15, 15, 5, 15, 15, 15, 15, 15, 15, 19 },
+					{ 2, 1, 1, 22, 1, 1, 22, 1, 22, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 1, 22, 22, 1, 14, 15, 19, 2 },
+					{ 2, 1, 22, 22, 22, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 },
+					{ 2, 1, 22, 0, 22, 1, 22, 22, 22, 1, 1, 14, 15, 20, 2 },
+					{ 2, 1, 22, 22, 22, 1, 0, 0, 22, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 191, 15, 15, 16, 2 },
+					{ 2, 22, 22, 22, 22, 1, 0, 0, 22, 1, 2, 0, 2, 1, 2 },
 
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 }, { 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 22, 22, 1, 18, 15, 20, 1, 2 },
+					{ 2, 1, 22, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 22, 1, 22, 22, 22, 1, 1, 191, 15, 19, 1, 111, 2 },
+					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 2, 1, 2, 1, 2, 2 },
+					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 13, 1, 18, 15, 20, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 18, 15, 15, 15, 15, 15, 15, 6, 15, 15, 15, 15, 15, 15, 20 },
 
 			};
 			return aux;
@@ -186,15 +215,22 @@ public class Juego {
 		if (option == 2) {
 			int aux[][] = {
 
-					{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2 }, { 2, 4, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 2, 1, 2, 2, 2, 1, 2, 2, 2, 1, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 2, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 191, 15, 15, 15, 15, 15, 15, 5, 15, 15, 15, 15, 15, 15, 19 },
+					{ 2, 1, 1, 22, 1, 1, 22, 1, 22, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 1, 22, 22, 1, 14, 15, 19, 2 },
+					{ 2, 1, 22, 22, 22, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 },
+					{ 2, 1, 22, 0, 22, 1, 22, 22, 22, 1, 1, 14, 15, 20, 2 },
+					{ 2, 1, 22, 22, 22, 1, 0, 0, 22, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 191, 15, 15, 16, 2 },
+					{ 2, 22, 22, 22, 22, 1, 0, 0, 22, 1, 2, 0, 2, 1, 2 },
 
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },
-					{ 2, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2 }, { 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 22, 22, 1, 18, 15, 20, 1, 2 },
+					{ 2, 1, 22, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 22, 1, 22, 22, 22, 1, 1, 191, 15, 19, 1, 111, 2 },
+					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 2, 1, 2, 1, 2, 2 },
+					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 13, 1, 18, 15, 20, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 18, 15, 15, 15, 15, 15, 15, 6, 15, 15, 15, 15, 15, 15, 20 },
 
 			};
 			return aux;
@@ -202,16 +238,24 @@ public class Juego {
 
 		if (option == 3) {
 			int aux[][] = {
+					// 5 (13,1) x6,y7
 
-					{ 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 5, 2 }, { 2, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 2, 2, 1, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 191, 15, 15, 15, 15, 15, 15, 5, 15, 15, 15, 15, 15, 15, 19 },
+					{ 2, 1, 1, 22, 1, 1, 22, 1, 22, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 1, 22, 22, 1, 14, 15, 19, 2 },
+					{ 2, 1, 22, 22, 22, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 },
+					{ 2, 1, 22, 0, 22, 1, 22, 22, 22, 1, 1, 14, 15, 20, 2 },
+					{ 2, 1, 22, 22, 22, 1, 0, 0, 22, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 191, 15, 15, 16, 2 },
+					{ 2, 22, 22, 22, 22, 1, 0, 0, 22, 1, 2, 0, 2, 1, 2 },
 
-					{ 2, 1, 1, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 1, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 2, 2 }, { 2, 1, 2, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 2, 1, 2, 1, 2, 2, 1, 2, 2, 1, 2, 1, 2 }, { 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 6, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 22, 22, 1, 18, 15, 20, 1, 2 },
+					{ 2, 1, 22, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 2, 1, 22, 1, 22, 22, 22, 1, 1, 191, 15, 19, 1, 111, 2 },
+					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 2, 1, 2, 1, 2, 2 },
+					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 13, 1, 18, 15, 20, 2 },
+					{ 2, 1, 1, 1, 1, 1, 22, 1, 1, 1, 1, 1, 1, 1, 2 },
+					{ 18, 15, 15, 15, 15, 15, 15, 6, 15, 15, 15, 15, 15, 15, 20 },
 
 			};
 			return aux;
@@ -222,7 +266,7 @@ public class Juego {
 
 	public void mover() {
 
-		timer = new Timer(200, new ActionListener() {
+		timer = new Timer(150, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
 				if (arriba == 1 && (mat[px][py - 1] == 1 || mat[px][py - 1] == 0)) {
@@ -238,7 +282,7 @@ public class Juego {
 													// actualizacion
 					py = py - 1;
 					// coloco el munieco
-					mat[px][py] = 3;
+					mat[px][py] = 61;
 					pintarMatriz();
 				}
 				if (abajo == 1 && (mat[px][py + 1] == 1 || mat[px][py + 1] == 0)) {
@@ -253,7 +297,7 @@ public class Juego {
 					matAux[px][py] = mat[px][py];
 					py = py + 1;
 					// coloco el munieco
-					mat[px][py] = 3;
+					mat[px][py] = 41;
 					pintarMatriz();
 				}
 
@@ -264,7 +308,7 @@ public class Juego {
 						mat[px][py] = 0;
 						matAux[px][py] = mat[px][py];
 						px = 13;
-						py = 1;
+						py = 7;
 						mat[px][py] = 3;
 						// cinco actulizaciones
 						pintarMatriz();
@@ -280,7 +324,7 @@ public class Juego {
 					matAux[px][py] = mat[px][py];
 					px = px - 1;
 					// coloco el munieco
-					mat[px][py] = 3;
+					mat[px][py] = 51;
 					pintarMatriz();
 				}
 				if (derecha == 1 && (mat[px + 1][py] == 1 || mat[px + 1][py] == 0 || mat[px + 1][py] == 6)) {
@@ -289,7 +333,7 @@ public class Juego {
 						mat[px][py] = 0;
 						matAux[px][py] = mat[px][py];
 						px = 1;
-						py = 13;
+						py = 7;
 						mat[px][py] = 3;
 						// sexta actulizaciones
 						pintarMatriz();
@@ -317,45 +361,6 @@ public class Juego {
 					}
 				}
 
-				/////////////////////////////////////////// USB
-				/////////////////////////////////////////// SENIAL/////////////////////////////////////////////////////////////
-				if (VentanaPrincipal.y == 1) {
-					if (mat[px][py - 1] == 1 || mat[px][py - 1] == 0) {
-						arriba = 1;
-						abajo = 0;
-						izquierda = 0;
-						derecha = 0;
-					}
-				}
-
-				if (VentanaPrincipal.y == 3) {
-					if (mat[px][py + 1] == 1 || mat[px][py + 1] == 0) {
-						arriba = 0;
-						abajo = 1;
-						izquierda = 0;
-						derecha = 0;
-					}
-				}
-
-				if (VentanaPrincipal.y == 2) {
-					if (mat[px - 1][py] == 1 || mat[px - 1][py] == 0) {
-						arriba = 0;
-						abajo = 0;
-						izquierda = 1;
-						derecha = 0;
-					}
-				}
-
-				if (VentanaPrincipal.y == 4) {
-					if (mat[px + 1][py] == 1 || mat[px + 1][py] == 0) {
-						arriba = 0;
-						abajo = 0;
-						izquierda = 0;
-						derecha = 1;
-					}
-				}
-				////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 				if (encontrado == 0) {
 					// JOptionPane.showMessageDialog(ventana, "Felicitaciones: "
 					// + jugador + " as
@@ -365,6 +370,7 @@ public class Juego {
 					JOptionPane.showMessageDialog(null,
 							"Felicitaciones: " + jugador + " as ganado" + "\nSIGUIENTE NIVEL ", null,
 							JOptionPane.INFORMATION_MESSAGE);
+					tercer++;
 					// paramos el juego
 					timer.stop();
 					// siguiente nivel
@@ -373,7 +379,7 @@ public class Juego {
 					cargarT = new Timer(5000, new ActionListener() {
 						public void actionPerformed(ActionEvent e) {
 							System.out.println(banderan1);
-							if (banderan1 == 2) {
+							if (banderan1 == 2 && tercer !=4) {
 								Juego c = new Juego();
 								mat = tablero(2);
 								// fantasma4 = new Fantasmas(13, 12);
@@ -382,7 +388,8 @@ public class Juego {
 								cargarT.stop();
 							}
 
-							if (tercer == 3) {
+							if (tercer == 4) {
+
 								JOptionPane.showMessageDialog(null,
 										"Felicitaciones: " + jugador + " as ganado"
 												+ "\nAhora este sera tu reto final ",
@@ -403,6 +410,53 @@ public class Juego {
 					timer.stop();
 				}
 
+				//////////////////////////////////////////////////////////// USB
+				//////////////////////////////////////////////////////////// PALANCA//////////////////////////////////////////
+				palanca = new Timer(100, new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						/////////////////////////////////////////// USB
+						/////////////////////////////////////////// SENIAL/////////////////////////////////////////////////////////////
+						if (VentanaPrincipal.y == 1) {
+							if (mat[px][py - 1] == 1 || mat[px][py - 1] == 0) {
+								arriba = 1;
+								abajo = 0;
+								izquierda = 0;
+								derecha = 0;
+							}
+						}
+
+						if (VentanaPrincipal.y == 3) {
+							if (mat[px][py + 1] == 1 || mat[px][py + 1] == 0) {
+								arriba = 0;
+								abajo = 1;
+								izquierda = 0;
+								derecha = 0;
+							}
+						}
+
+						if (VentanaPrincipal.y == 2) {
+							if (mat[px - 1][py] == 1 || mat[px - 1][py] == 0) {
+								arriba = 0;
+								abajo = 0;
+								izquierda = 1;
+								derecha = 0;
+							}
+						}
+
+						if (VentanaPrincipal.y == 4) {
+							if (mat[px + 1][py] == 1 || mat[px + 1][py] == 0) {
+								arriba = 0;
+								abajo = 0;
+								izquierda = 0;
+								derecha = 1;
+							}
+						}
+						////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					}
+				});
+				palanca.start();
+				//////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
 				// matar pacman //pacman fantasma
 
 				if (Juego.mat[px][py + 1] == 7 || Juego.mat[px][py - 1] == 7 || Juego.mat[px - 1][py] == 7
@@ -411,7 +465,7 @@ public class Juego {
 
 					if (numeroVidas == 1) {
 						fantasma1.timer.stop();
-						fantasma2.timer.stop();
+						//fantasma2.timer.stop();
 						// fantasma3.timer.stop();
 						JOptionPane.showMessageDialog(ventana, "ESTAS MUERTO");
 						// ventana.setVisible(false);
@@ -424,14 +478,53 @@ public class Juego {
 						fondoJuego.setIcon(perder);
 						panelJuego.setVisible(false);
 						ventana.add(fondoJuego, 0);
+						///////// cargamos los datos ////
+						Gestion gs = new Gestion();
+						VentanaPuntajes vp = new VentanaPuntajes(gs);
+						vp.nuevoJugador();
+						///////////////////////////////
+						VentanaMenu.ventana.setVisible(true);
+						ventana.setVisible(false);
 						// System.exit(0);
 						timer.stop();
+
 					} else {
 
 						fantasma1.timer.stop();
-						fantasma2.timer.stop();
+						//fantasma2.timer.stop();
+						// try {
+						// Thread.sleep(1000);
+						// } catch (InterruptedException e1) {
+						// // TODO Auto-generated catch block
+						// e1.printStackTrace();
+						// }
+						// mat[fantasma1.fanx][fantasma1.fany]=0;
+						// mat[fantasma2.fanx][fantasma2.fany]=0;
+						// pintarMatriz();
 						// fantasma3.timer.stop();
 
+						// timer1 = new Timer(100, new ActionListener() {
+						// public void actionPerformed(ActionEvent e) {
+						// timer.stop();
+						// matriz[px][py].setIcon(new ImageIcon("muerte/" +
+						// contM + ".png"));
+						// contM++;
+						// if (contM > 11) {
+						// contM = 0;
+						// vidas[numeroVidas].setVisible(false);
+						// numeroVidas--;
+						// mat[px][py] = 0;
+						// px = 1;
+						// py = 1;
+						// mat[px][py] = 3;
+						// timer1.stop();
+						// timer.start();
+						//
+						// }
+						// }
+						// });
+						// timer1.start();
+						
 						numeroVidas--;
 						vidas[numeroVidas].setVisible(false);
 						mat[px][py] = 0;
@@ -450,8 +543,9 @@ public class Juego {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
+
 						fantasma1.timer.start();
-						fantasma2.timer.start();
+						//fantasma2.timer.start();
 						// fantasma3.timer.start();
 					}
 				}
@@ -466,7 +560,7 @@ public class Juego {
 			public void keyPressed(KeyEvent e) {
 				// TODO Auto-generated method stub
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
-					System.out.println("Tecleado hacia arriba");
+					System.out.println("Tecleado haci aarriba");
 					if (mat[px][py - 1] == 1 || mat[px][py - 1] == 0) {
 						arriba = 1;
 						abajo = 0;
@@ -528,7 +622,7 @@ public class Juego {
 				// agregar las imagenes a la matriz
 				matriz[i][j].setIcon(new ImageIcon("proyectoPacman/" + mat[i][j] + ".png"));
 				// 200pixeles marjen
-				matriz[i][j].setBounds(120 + (i * 30), 120 + (j * 30), 30, 30);
+				matriz[i][j].setBounds(400 + (i * 30), 120 + (j * 30), 30, 30);
 				matriz[i][j].setVisible(true);
 				// es para superponer paneles
 				panelJuego.add(matriz[i][j], 0);
