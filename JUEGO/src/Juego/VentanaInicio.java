@@ -52,7 +52,7 @@ public class VentanaInicio {
 
 			fondoPresentacion = new JLabel();
 			fondoPresentacion.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-			imagenpres = new ImageIcon("proyectoPacman/grupo.jpg");
+			imagenpres = new ImageIcon("image/grupo.jpg");
 			imagenpres = new ImageIcon(
 					imagenpres.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
 			fondoPresentacion.setIcon(imagenpres);
@@ -65,7 +65,7 @@ public class VentanaInicio {
 				public void mousePressed(MouseEvent e) {
 					System.out.println("Iniciar");
 					VentanaMenu c=new VentanaMenu();
-					pathP="proyectoPacman/";
+					pathP="image/";
 					
 				}
 			});

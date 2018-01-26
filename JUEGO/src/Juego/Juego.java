@@ -108,7 +108,7 @@ public class Juego {
 		px = 1;
 		py = 1;
 		// muestra el pacman
-		mat[px][py] = 3;
+		mat[px][py] = 15;
 		// columnas filas
 
 		abajo = 0;
@@ -127,7 +127,7 @@ public class Juego {
 
 		fondoJuego = new JLabel();
 		fondoJuego.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-		imagenJuego = new ImageIcon("proyectoPacman/untitled.png");
+		imagenJuego = new ImageIcon("image/untitled.png");
 		imagenJuego = new ImageIcon(
 				imagenJuego.getImage().getScaledInstance(ventana.getWidth(), ventana.getHeight(), Image.SCALE_DEFAULT));
 		fondoJuego.setIcon(imagenJuego);
@@ -192,22 +192,22 @@ public class Juego {
 		if (option == 1) {
 			int aux[][] = {
 
-					{ 191, 15, 15, 15, 15, 15, 15, 5, 15, 15, 15, 15, 15, 15, 19 },
-					{ 2, 1, 1, 22, 1, 1, 22, 1, 22, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 22, 1, 22, 22, 1, 14, 15, 19, 2 },
-					{ 2, 1, 22, 22, 22, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 },
-					{ 2, 1, 22, 0, 22, 1, 22, 22, 22, 1, 1, 14, 15, 20, 2 },
-					{ 2, 1, 22, 22, 22, 1, 0, 0, 22, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 191, 15, 15, 16, 2 },
-					{ 2, 22, 22, 22, 22, 1, 0, 0, 22, 1, 2, 0, 2, 1, 2 },
+					{ 3, 6, 6,14, 6, 6, 2,22, 3, 6, 6, 6, 6, 6, 2},
+					{ 5,15,19,10,19,19, 5,19, 5,19,19,19,19,19, 5},
+					{ 5,19,19,19,19,19,10,19, 5,19,24,19,24,19, 5},
+					{ 5,19, 3, 6, 2,19,19,19, 4, 6, 1,19, 5,19, 5},
+					{ 5,19, 5, 0, 5,19,19,19,19,19,19,19, 5,19, 5},
+					{ 5,19, 4, 6, 1,19, 7, 6, 2,19, 7, 6, 1,19, 5},
+					{ 5,19,19,19,19,19, 0, 0, 5,19,19,19,19,19, 5},
+					{12, 6, 6, 6, 6,25, 0, 0, 5,19, 3, 6, 2,19, 5},
 
-					{ 2, 1, 1, 1, 1, 1, 22, 22, 22, 1, 18, 15, 20, 1, 2 },
-					{ 2, 1, 22, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 22, 1, 22, 22, 22, 1, 1, 191, 15, 19, 1, 111, 2 },
-					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 2, 1, 2, 1, 2, 2 },
-					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 13, 1, 18, 15, 20, 2 },
-					{ 2, 1, 1, 1, 1, 1, 22, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 18, 15, 15, 15, 15, 15, 15, 6, 15, 15, 15, 15, 15, 15, 20 },
+					{ 5,19,19,19,19,19, 0, 0, 5,19, 5, 0, 5,19, 5},
+					{ 5,19,24,19,24,19, 7, 6, 1,19, 4, 6, 1,19, 5},
+					{ 5,19, 5,19, 5,19,19,19,19,19,19,19,19,19, 5},
+					{ 5,19, 5,19, 5,19,24,19, 7, 6, 2,19,24,19, 5},
+					{ 5,19,10,19, 4, 6,13,19,19,19,10,19,10,19, 5},
+					{ 5,19,19,19,19,19, 5,19,24,19,19,19,19,19, 5},
+					{ 4, 6, 6, 6, 6, 6, 1,23, 4, 6, 6, 6, 6, 6, 1},
 
 			};
 			return aux;
@@ -215,23 +215,22 @@ public class Juego {
 		if (option == 2) {
 			int aux[][] = {
 
-					{ 191, 15, 15, 15, 15, 15, 15, 5, 15, 15, 15, 15, 15, 15, 19 },
-					{ 2, 1, 1, 22, 1, 1, 22, 1, 22, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 22, 1, 22, 22, 1, 14, 15, 19, 2 },
-					{ 2, 1, 22, 22, 22, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 },
-					{ 2, 1, 22, 0, 22, 1, 22, 22, 22, 1, 1, 14, 15, 20, 2 },
-					{ 2, 1, 22, 22, 22, 1, 0, 0, 22, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 191, 15, 15, 16, 2 },
-					{ 2, 22, 22, 22, 22, 1, 0, 0, 22, 1, 2, 0, 2, 1, 2 },
+					{ 3, 6, 6,14, 6, 6, 2,22, 6, 6, 6, 6, 6, 6, 2},
+					{ 5,19,19,10,19,19, 5,19, 5,19,19,19,19,19, 5},
+					{ 5,19,19,19,19,19,10,19, 5,19,24,19,24,19, 5},
+					{ 5,19, 3, 6, 2,19,19,19, 4, 6, 1,19, 5,19, 5},
+					{ 5,19, 5, 0, 5,19,19,19,19,19,19,19, 5,19, 5},
+					{ 5,19, 4, 6, 1,19, 7, 6, 2,19, 2, 6, 7,19, 5},
+					{ 5,19,19,19,19,19, 0, 0, 5,19,19,19,19,19, 5},
+					{12, 6, 6, 6, 6,25, 0, 0, 5,19, 3, 6, 2,19, 5},
 
-					{ 2, 1, 1, 1, 1, 1, 22, 22, 22, 1, 18, 15, 20, 1, 2 },
-					{ 2, 1, 22, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 22, 1, 22, 22, 22, 1, 1, 191, 15, 19, 1, 111, 2 },
-					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 2, 1, 2, 1, 2, 2 },
-					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 13, 1, 18, 15, 20, 2 },
-					{ 2, 1, 1, 1, 1, 1, 22, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 18, 15, 15, 15, 15, 15, 15, 6, 15, 15, 15, 15, 15, 15, 20 },
-
+					{ 5,19,19,19,19,19,19,19, 5,19, 5, 0, 5,19, 5},
+					{ 5,19,24,19,24,19, 7, 6, 1,19, 4, 6, 1,19, 5},
+					{ 5,19, 5,19, 5,19,19,19,19,19,19,19,19,19, 5},
+					{ 5,19, 5,19, 5,19,24,19, 7, 6, 2,19,24,19, 5},
+					{ 5,19,10,19, 4, 6,13,19,19,19,10,19,10,19, 5},
+					{ 5,19,19,19,19,19, 5,19,24,19,19,19,19,19, 5},
+					{ 4, 6, 6, 6, 6, 6, 1,23, 4, 6, 6, 6, 6, 6, 1},
 			};
 			return aux;
 		}
@@ -240,23 +239,22 @@ public class Juego {
 			int aux[][] = {
 					// 5 (13,1) x6,y7
 
-					{ 191, 15, 15, 15, 15, 15, 15, 5, 15, 15, 15, 15, 15, 15, 19 },
-					{ 2, 1, 1, 22, 1, 1, 22, 1, 22, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 22, 1, 22, 22, 1, 14, 15, 19, 2 },
-					{ 2, 1, 22, 22, 22, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2 },
-					{ 2, 1, 22, 0, 22, 1, 22, 22, 22, 1, 1, 14, 15, 20, 2 },
-					{ 2, 1, 22, 22, 22, 1, 0, 0, 22, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 1, 1, 1, 1, 0, 0, 0, 1, 191, 15, 15, 16, 2 },
-					{ 2, 22, 22, 22, 22, 1, 0, 0, 22, 1, 2, 0, 2, 1, 2 },
+					{ 3, 6, 6,14, 6, 6, 2,22, 6, 6, 6, 6, 6, 6, 2},
+					{ 5,19,19,10,19,19, 5,19, 5,19,19,19,19,19, 5},
+					{ 5,19,19,19,19,19,10,19, 5,19,24,19,24,19, 5},
+					{ 5,19, 3, 6, 2,19,19,19, 4, 6, 1,19, 5,19, 5},
+					{ 5,19, 5, 0, 5,19,19,19,19,19,19,19, 5,19, 5},
+					{ 5,19, 4, 6, 1,19, 7, 6, 2,19, 2, 6, 7,19, 5},
+					{ 5,19,19,19,19,19, 0, 0, 5,19,19,19,19,19, 5},
+					{12, 6, 6, 6, 6,25, 0, 0, 5,19, 3, 6, 2,19, 5},
 
-					{ 2, 1, 1, 1, 1, 1, 22, 22, 22, 1, 18, 15, 20, 1, 2 },
-					{ 2, 1, 22, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 2, 1, 22, 1, 22, 22, 22, 1, 1, 191, 15, 19, 1, 111, 2 },
-					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 2, 1, 2, 1, 2, 2 },
-					{ 2, 1, 22, 1, 22, 1, 22, 1, 1, 13, 1, 18, 15, 20, 2 },
-					{ 2, 1, 1, 1, 1, 1, 22, 1, 1, 1, 1, 1, 1, 1, 2 },
-					{ 18, 15, 15, 15, 15, 15, 15, 6, 15, 15, 15, 15, 15, 15, 20 },
-
+					{ 5,19,19,19,19,19,19,19, 5,19, 5, 0, 5,19, 5},
+					{ 5,19,24,19,24,19, 7, 6, 1,19, 4, 6, 1,19, 5},
+					{ 5,19, 5,19, 5,19,19,19,19,19,19,19,19,19, 5},
+					{ 5,19, 5,19, 5,19,24,19, 7, 6, 2,19,24,19, 5},
+					{ 5,19,10,19, 4, 6,13,19,19,19,10,19,10,19, 5},
+					{ 5,19,19,19,19,19, 5,19,24,19,19,19,19,19, 5},
+					{ 4, 6, 6, 6, 6, 6, 1,23, 4, 6, 6, 6, 6, 6, 1},
 			};
 			return aux;
 		}
@@ -269,9 +267,9 @@ public class Juego {
 		timer = new Timer(150, new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				if (arriba == 1 && (mat[px][py - 1] == 1 || mat[px][py - 1] == 0)) {
+				if (arriba == 1 && (mat[px][py - 1] == 19 || mat[px][py - 1] == 0)) {
 
-					if (mat[px][py - 1] == 1) {
+					if (mat[px][py - 1] == 19) {
 						puntos = puntos + 5;
 						record.setText("Puntos: " + puntos);
 					}
@@ -282,10 +280,10 @@ public class Juego {
 													// actualizacion
 					py = py - 1;
 					// coloco el munieco
-					mat[px][py] = 61;
+					mat[px][py] =18;
 					pintarMatriz();
 				}
-				if (abajo == 1 && (mat[px][py + 1] == 1 || mat[px][py + 1] == 0)) {
+				if (abajo == 1 && (mat[px][py + 1] == 19 || mat[px][py + 1] == 0)) {
 					// puntos
 					if (mat[px][py + 1] == 1) {
 						puntos = puntos + 5;
@@ -295,26 +293,26 @@ public class Juego {
 					// me muevo una pocicion
 					mat[px][py] = 0;
 					matAux[px][py] = mat[px][py];
-					py = py + 1;
+					py++;
 					// coloco el munieco
-					mat[px][py] = 41;
+					mat[px][py] =16;
 					pintarMatriz();
 				}
 
-				if (izquierda == 1 && (mat[px - 1][py] == 1 || mat[px - 1][py] == 0 || mat[px - 1][py] == 5)) {
+				if (izquierda == 1 && (mat[px - 1][py] == 19 || mat[px - 1][py] == 0 || mat[px - 1][py] == 22)) {
 
 					// vamos aponer al pacman en una nueva pocicion
-					if (mat[px - 1][py] == 5) {
+					if (mat[px - 1][py] == 22) {
 						mat[px][py] = 0;
 						matAux[px][py] = mat[px][py];
 						px = 13;
 						py = 7;
-						mat[px][py] = 3;
+						mat[px][py] = 17;
 						// cinco actulizaciones
 						pintarMatriz();
 					}
 
-					if (mat[px - 1][py] == 1) {
+					if (mat[px - 1][py] == 19) {
 						puntos = puntos + 5;
 						record.setText("Puntos: " + puntos);
 					}
@@ -324,21 +322,22 @@ public class Juego {
 					matAux[px][py] = mat[px][py];
 					px = px - 1;
 					// coloco el munieco
-					mat[px][py] = 51;
+					mat[px][py] = 17;
 					pintarMatriz();
 				}
-				if (derecha == 1 && (mat[px + 1][py] == 1 || mat[px + 1][py] == 0 || mat[px + 1][py] == 6)) {
+				if (derecha == 1 && (mat[px + 1][py] == 19 || mat[px + 1][py] == 0 || mat[px + 1][py] == 23)) {
 
-					if (mat[px + 1][py] == 6) {
+					if (mat[px + 1][py] == 23) {
 						mat[px][py] = 0;
 						matAux[px][py] = mat[px][py];
 						px = 1;
 						py = 7;
-						mat[px][py] = 3;
+						mat[px][py] = 15;
 						// sexta actulizaciones
 						pintarMatriz();
 					}
-					if (mat[px + 1][py] == 1) {
+					
+					if (mat[px + 1][py] == 19) {
 						puntos = puntos + 5;
 						record.setText("Puntos: " + puntos);
 					}
@@ -348,20 +347,20 @@ public class Juego {
 					matAux[px][py] = mat[px][py];
 					px = px + 1;
 					// coloco el munieco
-					mat[px][py] = 3;
+					mat[px][py] = 15;
 					pintarMatriz();
 				}
 
-				int encontrado = 0;
-				for (int i = 0; i < mat.length && encontrado == 0; i++) {
-					for (int j = 0; j < mat.length && encontrado == 0; j++) {
-						if (mat[i][j] == 1) {
-							encontrado = 1;
+				boolean encontrado = true;
+				for (int i = 0; i < mat.length && encontrado; i++) {
+					for (int j = 0; j < mat.length && encontrado; j++) {
+						if (mat[i][j] == 19) {
+							encontrado = false;
 						}
 					}
 				}
 
-				if (encontrado == 0) {
+				if (encontrado) {
 					// JOptionPane.showMessageDialog(ventana, "Felicitaciones: "
 					// + jugador + " as
 					// ganado");
@@ -417,7 +416,7 @@ public class Juego {
 						/////////////////////////////////////////// USB
 						/////////////////////////////////////////// SENIAL/////////////////////////////////////////////////////////////
 						if (VentanaPrincipal.y == 1) {
-							if (mat[px][py - 1] == 1 || mat[px][py - 1] == 0) {
+							if (mat[px][py - 1] == 19 || mat[px][py - 1] == 0) {
 								arriba = 1;
 								abajo = 0;
 								izquierda = 0;
@@ -426,7 +425,7 @@ public class Juego {
 						}
 
 						if (VentanaPrincipal.y == 3) {
-							if (mat[px][py + 1] == 1 || mat[px][py + 1] == 0) {
+							if (mat[px][py + 1] == 19 || mat[px][py + 1] == 0) {
 								arriba = 0;
 								abajo = 1;
 								izquierda = 0;
@@ -435,7 +434,7 @@ public class Juego {
 						}
 
 						if (VentanaPrincipal.y == 2) {
-							if (mat[px - 1][py] == 1 || mat[px - 1][py] == 0) {
+							if (mat[px - 1][py] == 19 || mat[px - 1][py] == 0) {
 								arriba = 0;
 								abajo = 0;
 								izquierda = 1;
@@ -444,7 +443,7 @@ public class Juego {
 						}
 
 						if (VentanaPrincipal.y == 4) {
-							if (mat[px + 1][py] == 1 || mat[px + 1][py] == 0) {
+							if (mat[px + 1][py] == 19 || mat[px + 1][py] == 0) {
 								arriba = 0;
 								abajo = 0;
 								izquierda = 0;
@@ -459,8 +458,8 @@ public class Juego {
 
 				// matar pacman //pacman fantasma
 
-				if (Juego.mat[px][py + 1] == 7 || Juego.mat[px][py - 1] == 7 || Juego.mat[px - 1][py] == 7
-						|| Juego.mat[px + 1][py] == 7) {
+				if (Juego.mat[px][py + 1] == 21 || Juego.mat[px][py - 1] == 21 || Juego.mat[px - 1][py] == 21
+						|| Juego.mat[px + 1][py] == 21) {
 					// fantasma4.timer.stop();
 
 					if (numeroVidas == 1) {
@@ -472,7 +471,7 @@ public class Juego {
 
 						ImageIcon perder;
 						cargar.carga.setVisible(false);
-						perder = new ImageIcon("proyectoPacman/gameOver.png");
+						perder = new ImageIcon("image/gameOver.png");
 						perder = new ImageIcon(perder.getImage().getScaledInstance(ventana.getWidth(),
 								ventana.getHeight(), Image.SCALE_DEFAULT));
 						fondoJuego.setIcon(perder);
@@ -536,7 +535,7 @@ public class Juego {
 							}
 						});
 
-						mat[px][py] = 3;
+						mat[px][py] = 15;
 						try {
 							Thread.sleep(2000);
 						} catch (InterruptedException e1) {
@@ -561,7 +560,7 @@ public class Juego {
 				// TODO Auto-generated method stub
 				if (e.getKeyCode() == KeyEvent.VK_UP) {
 					System.out.println("Tecleado haci aarriba");
-					if (mat[px][py - 1] == 1 || mat[px][py - 1] == 0) {
+					if (mat[px][py - 1] == 19 || mat[px][py - 1] == 0) {
 						arriba = 1;
 						abajo = 0;
 						izquierda = 0;
@@ -570,7 +569,7 @@ public class Juego {
 				}
 				if (e.getKeyCode() == KeyEvent.VK_DOWN) {
 					System.out.println("Tecleado hacia abajo ");
-					if (mat[px][py + 1] == 1 || mat[px][py + 1] == 0) {
+					if (mat[px][py + 1] == 19 || mat[px][py + 1] == 0) {
 						arriba = 0;
 						abajo = 1;
 						izquierda = 0;
@@ -579,7 +578,7 @@ public class Juego {
 				}
 				if (e.getKeyCode() == KeyEvent.VK_LEFT) {
 					System.out.println("Tecleado haci izquierda");
-					if (mat[px - 1][py] == 1 || mat[px - 1][py] == 0) {
+					if (mat[px - 1][py] == 19 || mat[px - 1][py] == 0) {
 						arriba = 0;
 						abajo = 0;
 						izquierda = 1;
@@ -588,7 +587,7 @@ public class Juego {
 				}
 				if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
 					System.out.println("Tecleado hacia derecha");
-					if (mat[px + 1][py] == 1 || mat[px + 1][py] == 0) {
+					if (mat[px + 1][py] == 19 || mat[px + 1][py] == 0) {
 						arriba = 0;
 						abajo = 0;
 						izquierda = 0;
@@ -620,7 +619,7 @@ public class Juego {
 		for (int i = 0; i < mat.length; i++) {
 			for (int j = 0; j < mat.length; j++) {
 				// agregar las imagenes a la matriz
-				matriz[i][j].setIcon(new ImageIcon("proyectoPacman/" + mat[i][j] + ".png"));
+				matriz[i][j].setIcon(new ImageIcon("image/" + mat[i][j] + ".png"));
 				// 200pixeles marjen
 				matriz[i][j].setBounds(400 + (i * 30), 120 + (j * 30), 30, 30);
 				matriz[i][j].setVisible(true);

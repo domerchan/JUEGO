@@ -56,7 +56,7 @@ static int bandera;
 
 				fondoMenu = new JLabel();
 				fondoMenu.setBounds(0, 0, ventana.getWidth(), ventana.getHeight());
-				imagenFondoMenu = new ImageIcon("proyectoPacman/Menu.jpg");
+				imagenFondoMenu = new ImageIcon("image/Menu.jpg");
 				imagenFondoMenu = new ImageIcon(imagenFondoMenu.getImage().getScaledInstance(ventana.getWidth(),
 						ventana.getHeight(), Image.SCALE_DEFAULT));
 				fondoMenu.setIcon(imagenFondoMenu);
